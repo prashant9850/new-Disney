@@ -1,1 +1,4 @@
 @import "tailwindcss";
+@theme {
+  --color-deepPersianBlue: #010d1a;
+}
