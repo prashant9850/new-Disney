@@ -1,10 +1,10 @@
-import { useState } from "react";
+import Header from "./Components/Header";
 
 function App() {
   return (
     <>
-      <div className="w-full flex justify-center">
-        <p className="text-5xl text-red-600">hello</p>
+      <div className="w-full">
+        <Header />
       </div>
     </>
   );
