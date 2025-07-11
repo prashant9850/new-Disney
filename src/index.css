@@ -2,3 +2,23 @@
 @theme {
   --color-deepPersianBlue: #010d1a;
 }
+
+/* Custom horizontal scrollbar with transparent track and semi-transparent thumb */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px; /* thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* no background */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3); /* white, 30% transparent */
+  border-radius: 4px;
+}
+
+/* Firefox support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
