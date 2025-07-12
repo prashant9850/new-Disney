@@ -1,12 +1,11 @@
 import Header from "./Components/Header";
-import Testing from "./Components/Testing";
-
+import Slider from "./Components/Slider";
 function App() {
   return (
     <div className="bg-deepPersianBlue text-white p-4 h-screen">
       <div className="w-full">
         <Header />
-        <Testing />
+        <Slider />
       </div>
     </div>
   );

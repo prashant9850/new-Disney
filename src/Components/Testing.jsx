@@ -1,26 +1,24 @@
 import { useState } from "react";
 
 function Testing() {
-  const [text, setText] = useState("click below button to change the text");
+  const [isBlue, setIsBlue] = useState(true);
 
   const handleClick = () => {
-    setText((prevText) =>
-      prevText === "click below button to change the text"
-        ? "the text is successfully changed"
-        : "click below button to change the text"
-    );
+    setIsBlue((prev) => !prev);
   };
 
+  // Define color class based on state
+  const buttonColorClass = isBlue
+    ? "bg-blue-600 hover:bg-blue-700"
+    : "bg-red-600 hover:bg-red-700";
+
   return (
-    <>
-      <p className="mb-2">{text}</p>
-      <button
-        onClick={handleClick}
-        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
-      >
-        Click me
-      </button>
-    </>
+    <button
+      onClick={handleClick}
+      className={`px-4 py-2 text-white rounded transition-all duration-300 ${buttonColorClass}`}
+    >
+      Click me
+    </button>
   );
 }
 
