@@ -1,19 +1,21 @@
 @import "tailwindcss";
+
+/* Define a custom color (you can use this inside Tailwind config instead for full support) */
 @theme {
   --color-deepPersianBlue: #010d1a;
 }
 
-/* Custom horizontal scrollbar with transparent track and semi-transparent thumb */
+/* Custom horizontal scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px; /* thin scrollbar */
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* no background */
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3); /* white, 30% transparent */
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
 
@@ -21,4 +23,29 @@
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+/* Hide scrollbar completely */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Fade and slide animation for title text */
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInSlide {
+  animation: fadeInSlide 0.5s ease forwards;
 }
