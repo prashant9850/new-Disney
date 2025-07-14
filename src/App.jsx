@@ -4,8 +4,10 @@ import Slider from "./Components/Slider";
 function App() {
   return (
     <div className="bg-deepPersianBlue text-white min-h-screen">
-      <div className="max-w-6xl mx-auto pb-10">
-        <Header />
+      <div className="w-full mx-auto pb-10">
+        <div className="pt-5">
+          <Header />
+        </div>
         <Slider />
       </div>
     </div>
