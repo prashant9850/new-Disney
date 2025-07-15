@@ -1,5 +1,6 @@
 import Header from "./Components/Header";
 import Slider from "./Components/Slider";
+import ProductionHouse from "./Components/ProductionHouse";
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
           <Header />
         </div>
         <Slider />
+      </div>
+      <div>
+        <ProductionHouse />
       </div>
     </div>
   );

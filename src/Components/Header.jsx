@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import disneylogo from "../assets/disneylogo.webp";
-import User from "../assets/User.avif";
+import disneylogo from "../assets/images/disneylogo.png";
+import User from "../assets/images/User.avif";
 import {
   HiHome,
   HiMagnifyingGlass,
@@ -22,9 +22,8 @@ function Header() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
-  const toggleRef = useRef(null); // ref for dots icon
+  const toggleRef = useRef(null);
 
-  // ✅ Close dropdown on outside click (except on dots icon)
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -53,7 +52,7 @@ function Header() {
           <img
             src={disneylogo}
             alt="Disney Logo"
-            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 border rounded-full bg-white object-contain mr-4"
+            className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 border rounded-full object-contain mr-4"
           />
         </div>
 
