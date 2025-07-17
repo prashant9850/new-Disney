@@ -16,19 +16,6 @@ function Slider() {
     getTrendingMovies();
   }, []);
 
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (!e.target.closest(".arrow-button") && !e.target.closest("img")) {
-        setShowArrows(false);
-        clearTimeout(timeoutRef.current);
-      }
-    };
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
-
   const getTrendingMovies = () => {
     GlobalApi.getTrendingVideos()
       .then((resp) => {
@@ -45,70 +32,46 @@ function Slider() {
       left: index * containerWidth,
       behavior: "smooth",
     });
-  };
-
-  const scrollLeft = () => {
-    const newIndex = (currentIndex - 1 + MAX_VISIBLE) % MAX_VISIBLE;
-    setCurrentIndex(newIndex);
-    scrollToIndex(newIndex);
-    keepArrowsVisible(8000);
-  };
-
-  const scrollRight = () => {
-    const newIndex = (currentIndex + 1) % MAX_VISIBLE;
-    setCurrentIndex(newIndex);
-    scrollToIndex(newIndex);
-    keepArrowsVisible(8000);
+    setCurrentIndex(index);
+    // 👇 Do NOT reset arrow timeout here — keep arrows visible only by hover
   };
 
   const handleMouseEnter = () => {
     setShowArrows(true);
-    keepArrowsVisible(3000);
-  };
-
-  const keepArrowsVisible = (duration) => {
-    setShowArrows(true);
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setShowArrows(false);
-    }, duration);
+    }, 4000); // Show for 4 seconds only
   };
 
   return (
     <div
-      className="relative mt-6 px-0 md:px-0 overflow-hidden"
+      className="relative mt-3 px-0 md:px-0 overflow-hidden"
       onMouseEnter={handleMouseEnter}
     >
       <div className="relative h-[300px] sm:h-[380px] md:h-[420px] lg:h-[500px]">
-        {/* Fixed Arrows */}
-        {currentIndex > 0 && (
-          <button
-            className={`arrow-button absolute top-1/2 left-[10%] -translate-y-1/2 z-20 
-              ${showArrows ? "sm:flex" : "sm:hidden"} flex
-              bg-black/50 hover:bg-black/70 text-white
-              p-2 rounded-full backdrop-blur-sm shadow-md transition-all duration-300`}
-            onClick={(e) => {
-              e.stopPropagation();
-              scrollLeft();
-            }}
+        {/* Left Arrow - only show if not first */}
+        {currentIndex > 0 && showArrows && (
+          <div
+            className="absolute top-1/2 left-[10%] -translate-y-1/2 z-20
+              flex bg-black/50 text-white p-2 rounded-full
+              backdrop-blur-sm shadow-md cursor-pointer"
+            onClick={() => scrollToIndex(currentIndex - 1)}
           >
             <GoArrowLeft size={24} />
-          </button>
+          </div>
         )}
 
-        {currentIndex < MAX_VISIBLE - 1 && (
-          <button
-            className={`arrow-button absolute top-1/2 right-[10%] -translate-y-1/2 z-20 
-              ${showArrows ? "sm:flex" : "sm:hidden"} flex
-              bg-black/50 hover:bg-black/70 text-white
-              p-2 rounded-full backdrop-blur-sm shadow-md transition-all duration-300`}
-            onClick={(e) => {
-              e.stopPropagation();
-              scrollRight();
-            }}
+        {/* Right Arrow - only show if not last */}
+        {currentIndex < MAX_VISIBLE - 1 && showArrows && (
+          <div
+            className="absolute top-1/2 right-[10%] -translate-y-1/2 z-20
+              flex bg-black/50 text-white p-2 rounded-full
+              backdrop-blur-sm shadow-md cursor-pointer"
+            onClick={() => scrollToIndex(currentIndex + 1)}
           >
             <GoArrowRight size={24} />
-          </button>
+          </div>
         )}
 
         {/* Image Slider */}
@@ -125,20 +88,16 @@ function Slider() {
                 className={`w-[10%] ${index === 0 ? "" : "hidden sm:block"}`}
               ></div>
 
-              {/* Image */}
-              <div className="relative w-[80%] h-full">
+              {/* Image Container */}
+              <div className="relative w-[80%] h-full transform transition-transform duration-300 hover:scale-[1.03]">
                 <img
                   src={IMAGE_BASE_URL + item.backdrop_path}
                   alt={item.title}
                   className="w-full h-full rounded-xl object-cover border-transparent shadow-xl/30 hover:border-white border-4 transition-all duration-300"
                 />
-
-                {/* Title Inside Image */}
+                {/* Title */}
                 {index === currentIndex && (
-                  <div
-                    className="absolute bottom-4 right-4 text-white text-xl md:text-3xl font-bold bg-black/40 px-4 py-2 rounded-lg shadow-lg
-                    animate-[fadeInSlide_0.5s_ease-in-out]"
-                  >
+                  <div className="absolute bottom-4 right-4 text-white text-xl md:text-3xl font-bold bg-black/40 px-4 py-2 rounded-lg shadow-lg">
                     {item.title || item.name}
                   </div>
                 )}

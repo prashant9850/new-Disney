@@ -37,16 +37,15 @@ function Header() {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative mt-0">
       {/* Navbar */}
-      <div className="flex items-center justify-between px-4 py-2 sm:px-6 md:px-8 lg:px-12">
+      <div className="flex items-center justify-between px-4 py-1 sm:px-4 md:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex-shrink-0">
           <img
@@ -57,8 +56,8 @@ function Header() {
         </div>
 
         {/* Menu */}
-        <div className="flex-1 mx-4 overflow-x-auto pb-2 whitespace-nowrap custom-scrollbar">
-          <ul className="flex gap-4 sm:gap-6 md:gap-8 text-white items-center">
+        <div className="flex-1 mx-4 overflow-x-auto pb-1 whitespace-nowrap custom-scrollbar">
+          <ul className="flex gap-4 sm:gap-5 md:gap-6 text-white items-center">
             {/* First 3 menu items */}
             {menu.slice(0, 3).map((item, index) => {
               const Icon = item.icon;

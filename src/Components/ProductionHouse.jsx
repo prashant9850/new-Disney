@@ -24,7 +24,7 @@ function ProductionHouse() {
       {studios.map((studio, index) => (
         <div
           key={index}
-          className="relative w-40 h-40 rounded-lg overflow-hidden shadow-lg group cursor-pointer"
+          className="relative w-60 h-30 rounded-lg overflow-hidden shadow-lg group cursor-pointer bg-[#2B2B2B] hover:border-2 border-white"
         >
           {/* Background video */}
           <video
