@@ -1,6 +1,7 @@
 import Header from "./Components/Header";
 import Slider from "./Components/Slider";
 import ProductionHouse from "./Components/ProductionHouse";
+import GenereMovielist from "./Components/GenereMovielist";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       </div>
       <div>
         <ProductionHouse />
+      </div>
+      <div>
+        <GenereMovielist />
       </div>
     </div>
   );
