@@ -57,7 +57,7 @@ function Header() {
 
         {/* Menu */}
         <div className="flex-1 mx-4 overflow-x-auto pb-1 whitespace-nowrap custom-scrollbar">
-          <ul className="flex gap-4 sm:gap-5 md:gap-6 text-white items-center">
+          <ul className="flex gap-6 sm:gap-8 md:gap-10 text-white items-center">
             {/* First 3 menu items */}
             {menu.slice(0, 3).map((item, index) => {
               const Icon = item.icon;

@@ -5,7 +5,6 @@ const api_key = "6ac39e06333221a20a7b6aedf62f04e1";
 
 const movieByGenreBaseURL = `${movieBaseUrl}/discover/movie?api_key=${api_key}`;
 
-// ✅ Function — not just a promise
 const getTrendingVideos = () =>
   axios.get(`${movieBaseUrl}/trending/all/day?api_key=${api_key}`);
 
